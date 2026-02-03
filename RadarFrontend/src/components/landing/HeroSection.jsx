@@ -74,7 +74,7 @@ const HeroSection = () => {
         <section className="relative pt-20 pb-12 overflow-hidden">
             <div className="container mx-auto px-6 h-full flex flex-col justify-center">
 
-                {/* Main Header */}
+                {}
                 <div className="text-center max-w-4xl mx-auto mb-14">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -105,7 +105,7 @@ const HeroSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Feature Grid */}
+                {}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
                     {cards.map((card, idx) => (
                         <motion.div
@@ -116,16 +116,16 @@ const HeroSection = () => {
                             transition={{ delay: idx * 0.1 }}
                             className="group h-[390px] flex flex-col bg-white rounded-2xl overflow-hidden border border-[#348E87]/10 hover:shadow-xl hover:border-[#348E87]/30 transition-all duration-300"
                         >
-                            {/* Visual Area (Top 50%) */}
+                            {}
                             <div className="h-[50%] relative bg-[#fcfcfc] border-b border-[#348E87]/5 group-hover:bg-[#348E87]/5 transition-colors">
-                                {/* Title Overlay */}
+                                {}
                                 <div className="absolute top-4 left-4 z-10 w-[90%]">
                                     <h3 className="text-lg font-bold text-[#348E87] leading-tight group-hover:translate-x-1 transition-transform">{card.title}</h3>
                                 </div>
                                 {card.visual}
                             </div>
 
-                            {/* Text Area (Bottom 50%) */}
+                            {}
                             <div className="h-[50%] p-6 flex flex-col justify-start">
                                 <p className="text-[#348E87]/70 text-sm leading-relaxed">
                                     {card.description}

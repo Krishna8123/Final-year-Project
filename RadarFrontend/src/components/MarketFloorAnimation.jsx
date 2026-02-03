@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { TrendingUp, DollarSign, BarChart3, Bitcoin, Euro, PoundSterling, CandlestickChart, Activity, Globe } from "lucide-react";
 
-// Helper to create random market-like fluctuation bars
+
 const MarketBar = ({ height, delay, index }) => (
     <motion.div
         initial={{ height: "20%" }}
@@ -25,9 +25,9 @@ const OrbitItem = ({ children, radius, angle, speed }) => {
         >
             <div
                 className="absolute"
-                style={{ transform: `translateX(${radius}px)` }} // Push out to radius
+                style={{ transform: `translateX(${radius}px)` }} 
             >
-                {/* Counter-rotate to keep icon upright in 3D space effect */}
+                {}
                 <motion.div
                     animate={{ rotate: -360 }}
                     transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
@@ -43,7 +43,7 @@ const OrbitItem = ({ children, radius, angle, speed }) => {
 };
 
 export default function MarketFloorAnimation() {
-    // Generate fake market bars
+    
     const bars = Array.from({ length: 20 }).map((_, i) => ({
         height: Math.floor(Math.random() * 60) + 20,
         delay: Math.random() * 2
@@ -52,18 +52,18 @@ export default function MarketFloorAnimation() {
     return (
         <div className="relative w-full h-[500px] flex items-end justify-center perspective-[1200px] overflow-visible">
 
-            {/* 3D Tilted Floor Container */}
+            {}
             <div
                 className="relative flex items-center justify-center transform-style-3d"
                 style={{ transform: "rotateX(60deg) scale(1.2)" }}
             >
-                {/* -- Layer 1: The Base Grid/Radar -- */}
+                {}
                 <div className="absolute inset-0 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 border-[1px] border-emerald-500/20 rounded-full animate-[spin_120s_linear_infinite]" />
                 <div className="absolute inset-0 w-[400px] h-[400px] -translate-x-1/2 -translate-y-1/2 border-[1px] border-emerald-500/10 rounded-full border-dashed animate-[spin_80s_linear_infinite_reverse]" />
 
-                {/* -- Layer 2: Market Candles (Rising from floor) -- */}
+                {}
                 <div className="absolute flex items-end justify-center w-[300px] h-[300px] -translate-x-1/2 -translate-y-1/2" style={{ transform: "rotateX(-60deg)" }}>
-                    {/* Note: Un-tilting these so they stand up straight looks cool, OR we keep them flat. Let's try keeping them flat on the radar for the 'floor' look */}
+                    {}
                     <div className="flex items-end gap-1 h-32 w-full justify-center opacity-80" style={{ transform: "translateY(50px)" }}>
                         {bars.map((bar, i) => (
                             <MarketBar key={i} index={i} height={bar.height} delay={bar.delay} />
@@ -71,21 +71,21 @@ export default function MarketFloorAnimation() {
                     </div>
                 </div>
 
-                {/* -- Layer 3: Orbiting Stock Icons -- */}
-                {/* Inner Ring */}
+                {}
+                {}
                 <div className="absolute inset-0 flex items-center justify-center">
                     <OrbitItem radius={180} speed={50}><DollarSign size={24} /></OrbitItem>
                     <OrbitItem radius={-180} speed={50}><Euro size={24} /></OrbitItem>
                 </div>
 
-                {/* Outer Ring */}
+                {}
                 <div className="absolute inset-0 flex items-center justify-center">
                     <OrbitItem radius={260} speed={70}><Bitcoin size={24} className="text-orange-400" /></OrbitItem>
                     <OrbitItem radius={-260} speed={70}><Activity size={24} /></OrbitItem>
                     <OrbitItem radius={260} speed={70} startAngle={90}><TrendingUp size={24} /></OrbitItem>
                 </div>
 
-                {/* Center Piece: The "Reactor" / Logo */}
+                {}
                 <div className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2">
                     <motion.div
                         animate={{ boxShadow: ["0 0 20px #10b981", "0 0 60px #10b981", "0 0 20px #10b981"] }}
@@ -94,7 +94,7 @@ export default function MarketFloorAnimation() {
                     >
                         <img src="/radar-logo-final.jpg" className="w-full h-full object-cover rounded-full opacity-90" />
 
-                        {/* Hologram Light Beam */}
+                        {}
                         <div className="absolute bottom-0 w-full h-20 bg-emerald-500/20 blur-xl rounded-full" style={{ transform: "translateY(50%) rotateX(-90deg)" }}></div>
                     </motion.div>
                 </div>

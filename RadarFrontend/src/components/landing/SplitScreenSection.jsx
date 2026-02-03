@@ -10,7 +10,7 @@ function cn(...inputs) {
 const SplitScreenSection = ({
     title,
     description,
-    features = [], // Array of strings or objects { icon, title, text }
+    features = [], 
     imageComp,
     reverse = false,
     id,
@@ -26,7 +26,7 @@ const SplitScreenSection = ({
                     reverse ? "lg:flex-row-reverse" : ""
                 )}>
 
-                    {/* Text Content */}
+                    {}
                     <motion.div
                         initial={{ opacity: 0, x: reverse ? 50 : -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -121,7 +121,7 @@ const SplitScreenSection = ({
                         </div>
                     </motion.div>
 
-                    {/* Visual Content */}
+                    {}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, x: reverse ? -50 : 50 }}
                         whileInView={{ opacity: 1, scale: 1, x: 0 }}

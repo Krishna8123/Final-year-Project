@@ -56,7 +56,7 @@ export default function NewsSentiment() {
                             {item.title}
                         </h4>
 
-                        {/* Sentiment Bar */}
+                        {}
                         <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden flex">
                             <div
                                 className={`h-full ${item.sentiment === 'Bullish' ? 'bg-[#42C0A5] w-3/4'

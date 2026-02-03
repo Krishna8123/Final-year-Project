@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
 };
 
 const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID); // Ensure GOOGLE_CLIENT_ID is in .env
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID); 
 
 const googleAuth = async (req, res) => {
     const { token } = req.body;
@@ -54,7 +54,7 @@ const googleAuth = async (req, res) => {
                 picture: picture
             });
         } else {
-            // Create new user with random password
+            
             const randomPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
             user = await User.create({
                 username: name,
@@ -99,7 +99,7 @@ const loginUser = async (req, res) => {
 };
 
 const getUserProfile = async (req, res) => {
-    // Protected route: req.user is set
+    
     res.json({
         _id: req.user._id,
         username: req.user.username,
@@ -111,7 +111,7 @@ const getUserProfile = async (req, res) => {
 const updateMode = async (req, res) => {
     const { mode } = req.body;
 
-    // Protected route: req.user is set
+    
     const user = req.user;
 
     user.preferredMode = mode;
