@@ -78,9 +78,9 @@ export default function Register() {
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.3 }}
       >
-        <div className="mb-10">
+        <div className="mb-6">
           <h2 className="text-3xl font-extrabold text-gray-900 mb-2 font-['Plus_Jakarta_Sans'] tracking-tight">Create your account</h2>
           <p className="text-gray-500 text-sm font-medium">Join Radar and start your journey.</p>
         </div>
@@ -92,8 +92,8 @@ export default function Register() {
           </div>
         )}
 
-        <div className="space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
             <div>
               <div className="relative">
                 <input
