@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const Preloader = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
+
+    const shouldShowPreloader = location.pathname === '/';
+
+    // Start with loading true only if we are on the home page
+    const [isLoading, setIsLoading] = useState(shouldShowPreloader);
 
     useEffect(() => {
-        // Display for 2.2 seconds before revealing the app
-        const timer = setTimeout(() => {
+        if (shouldShowPreloader) {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 2200);
+            return () => clearTimeout(timer);
+        } else {
+            // Ensure simple immediate "load" if not on home (though state is already false)
             setIsLoading(false);
-        }, 2200);
-
-        return () => clearTimeout(timer);
-    }, []);
+        }
+    }, [shouldShowPreloader]);
 
     return (
         <>

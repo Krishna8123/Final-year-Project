@@ -10,8 +10,8 @@ import Preloader from './components/Preloader';
 
 function App() {
   return (
-    <Preloader>
-      <Router>
+    <Router>
+      <Preloader>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -19,8 +19,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
-      </Router>
-    </Preloader>
+      </Preloader>
+    </Router>
   );
 }
 

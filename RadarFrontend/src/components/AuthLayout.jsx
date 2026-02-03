@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
 
 
 
@@ -11,9 +11,9 @@ import { Tilt } from 'react-tilt';
 export default function AuthLayout({ children }) {
     const defaultTiltOptions = {
         reverse: false,
-        max: 10,
+        max: 2,
         perspective: 1000,
-        scale: 1.01,
+        scale: 1.00,
         speed: 1000,
         transition: true,
         axis: null,
@@ -66,18 +66,13 @@ export default function AuthLayout({ children }) {
                     </div>
 
                     <div className="relative">
-                        <div className="absolute top-2/3 right-0 translate-x-[68%] -translate-y-1/2 w-full h-full opacity-80 pointer-events-none -z-10 scale-[4.5]">
-                            <DotLottieReact
-                                src="/animation.lottie"
-                                loop
-                                autoplay
-                            />
-                        </div>
                         <h1 className="text-6xl font-extrabold leading-tight mb-8 font-['Plus_Jakarta_Sans'] drop-shadow-sm tracking-tight relative z-10">
                             Master the Markets <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6FFFE9] to-[#ffffff]">Multi-Asset Analytics</span>
                         </h1>
                     </div>
+
+
 
 
 
@@ -115,7 +110,7 @@ export default function AuthLayout({ children }) {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.3 }}
                         className="bg-white/90 backdrop-blur-xl p-12 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(26,120,112,0.15)] border border-white hover:shadow-[0_40px_100px_-15px_rgba(26,120,112,0.2)] transition-all duration-500"
                     >
                         {children}
