@@ -23,9 +23,9 @@ export default function AuthLayout({ children }) {
 
     return (
         <div className="min-h-screen flex font-sans">
-            {/* Left Panel - Palette Gradient (Deep Teal to Sea Green) */}
+            {}
             <div className="hidden lg:flex w-7/12 bg-gradient-to-br from-[#103E46] via-[#1A7870] to-[#42C0A5] text-white flex-col justify-center p-20 relative overflow-hidden">
-                {/* Background Decor */}
+                {}
                 <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                     <motion.div
                         animate={{ rotate: 360, scale: [1, 1.2, 1] }}
@@ -61,7 +61,7 @@ export default function AuthLayout({ children }) {
                             <span className="text-[10px] font-bold tracking-[0.2em] text-[#6FFFE9] opacity-80 uppercase mt-1">Invest & Trade Smarter</span>
                         </div>
 
-                        {/* Animation placed right of the logo text */}
+                        {}
 
                     </div>
 
@@ -95,9 +95,9 @@ export default function AuthLayout({ children }) {
                 </div>
             </div>
 
-            {/* Right Panel - Form Area with Light Gradient Background */}
+            {}
             <div className="w-full lg:w-5/12 flex items-center justify-center p-6 relative bg-gradient-to-br from-[#f0fdfa] via-[#e6fffa] to-[#f0fdfa]">
-                {/* Subtle Light Decor */}
+                {}
                 <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
                     <motion.div
                         animate={{ y: [0, -30, 0], x: [0, 20, 0] }}

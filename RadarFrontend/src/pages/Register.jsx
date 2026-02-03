@@ -60,12 +60,12 @@ export default function Register() {
       await api.post('/auth/register', {
         username,
         password
-        // Backend currently only takes username/password.
-        // Ideally we should send email/identifier too if backend supports it.
-        // For now, assuming username is unique.
+        
+        
+        
       });
 
-      // After register, redirect to login
+      
       window.location.href = '/login';
     } catch (error) {
       setLoading(false);

@@ -4,17 +4,17 @@ import {
     Activity, Search, Bell, Menu, X
 } from 'lucide-react';
 
-// New Sections
+
 import HeroSection from '../components/landing/HeroSection';
 import GlobalAssetSection from '../components/landing/GlobalAssetSection';
 import TraderModeSection from '../components/landing/TraderModeSection';
 import FeaturesSection from '../components/landing/FeaturesSection';
 
-// --- Navbar ---
+
 const Navbar = () => (
     <div className="absolute top-6 left-0 right-0 z-50 flex justify-center px-4">
         <nav className="w-full max-w-7xl flex justify-between items-center backdrop-blur-xl bg-[#348E87] rounded-2xl px-6 py-3 border border-[#6FFFE9]/20 shadow-lg shadow-[#348E87]/20 transition-all duration-300">
-            {/* Left: Logo & Menu */}
+            {}
             <div className="flex items-center gap-8">
                 <div className="flex items-center gap-3">
                     <div className="relative">
@@ -35,7 +35,7 @@ const Navbar = () => (
                 </div>
             </div>
 
-            {/* Right: Controls */}
+            {}
             <div className="flex items-center gap-4">
                 <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/10 border border-white/10 text-white text-sm focus-within:border-white/30 focus-within:text-white transition-all">
                     <Search size={14} />
@@ -54,7 +54,7 @@ const Navbar = () => (
     </div>
 );
 
-// --- Footer ---
+
 const Footer = () => (
     <footer className="relative z-10 pt-20 pb-10 border-t border-[#6FFFE9]/10 bg-[#348E87]">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-16">

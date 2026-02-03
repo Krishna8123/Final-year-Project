@@ -11,7 +11,7 @@ const OrbitIcon = ({ children, radius, angle, duration = 20, delay = 0 }) => {
                 height: "3rem",
                 left: "50%",
                 top: "50%",
-                marginLeft: "-1.5rem", // center offset
+                marginLeft: "-1.5rem", 
                 marginTop: "-1.5rem",
             }}
             animate={{
@@ -21,16 +21,16 @@ const OrbitIcon = ({ children, radius, angle, duration = 20, delay = 0 }) => {
                 duration: duration,
                 repeat: Infinity,
                 ease: "linear",
-                delay: -delay, // Negative delay to start at different positions immediately
+                delay: -delay, 
             }}
         >
             <div
                 style={{
-                    transform: `translateY(-${radius}px) rotate(-${0}deg)`, // Move outwards
+                    transform: `translateY(-${radius}px) rotate(-${0}deg)`, 
                 }}
                 className="relative"
             >
-                {/* Counter-rotate the icon so it stays upright while the parent rotates */}
+                {}
                 <motion.div
                     animate={{ rotate: -360 }}
                     transition={{ duration: duration, repeat: Infinity, ease: "linear", delay: -delay }}
@@ -58,11 +58,11 @@ export default function StockOrbitAnimation() {
     return (
         <div className="relative w-[500px] h-[500px] flex items-center justify-center">
 
-            {/* Outer Orbit Tracks (Decorative) */}
+            {}
             <div className="absolute inset-0 rounded-full border border-[#42C0A5]/10 w-[280px] h-[280px] m-auto" />
             <div className="absolute inset-0 rounded-full border border-[#42C0A5]/10 w-[440px] h-[440px] m-auto border-dashed opacity-50" />
 
-            {/* Central Logo */}
+            {}
             <motion.div
                 className="relative z-20 w-32 h-32 rounded-full p-1 bg-gradient-to-br from-[#42C0A5] to-[#103E46] shadow-[0_0_40px_rgba(66,192,165,0.4)]"
                 animate={{
@@ -79,19 +79,19 @@ export default function StockOrbitAnimation() {
                 </div>
             </motion.div>
 
-            {/* Orbiting Icons */}
+            {}
             {icons.map((item, index) => (
                 <OrbitIcon
                     key={index}
                     radius={item.radius}
                     delay={item.delay}
-                    duration={item.radius > 150 ? 35 : 25} // Outer orbit slower
+                    duration={item.radius > 150 ? 35 : 25} 
                 >
                     {item.icon}
                 </OrbitIcon>
             ))}
 
-            {/* Floating Particles (Optional additional effect) */}
+            {}
             <motion.div
                 className="absolute w-2 h-2 bg-[#6FFFE9] rounded-full blur-[1px]"
                 animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0], x: [0, 100], y: [0, -100] }}

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');
-    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+    const [status, setStatus] = useState('idle'); 
     const [message, setMessage] = useState('');
 
     const handleSubmit = (e) => {
@@ -16,7 +16,7 @@ export default function ForgotPassword() {
             return;
         }
         setStatus('loading');
-        // Mock API call
+        
         setTimeout(() => {
             setStatus('success');
             setMessage('Password reset link sent to ' + email);

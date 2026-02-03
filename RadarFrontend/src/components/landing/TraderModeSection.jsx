@@ -14,13 +14,13 @@ const DualModeSection = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [transitionData, setTransitionData] = useState(null);
 
-    // -- Data Configuration --
+    
     const content = {
         TRADER: {
             theme: {
-                bg: '#020617', // Deeper, darker background
+                bg: '#020617', 
                 surface: '#0F172A',
-                glow: '#38BDF8', // Cyan glow
+                glow: '#38BDF8', 
                 text: '#FFFFFF'
             },
             title: "Built for Market Reading, Not Guesswork",
@@ -55,7 +55,7 @@ const DualModeSection = () => {
     const currentTheme = content[mode].theme;
     const CurrentVisual = content[mode].Visual;
 
-    // -- Unique Visuals for Overlay --
+    
     const TraderOverlayVisual = () => (
         <div className="flex gap-2 items-end h-32">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -127,7 +127,7 @@ const DualModeSection = () => {
 
         setIsTransitioning(true);
 
-        const switchDelay = nextMode === 'TRADER' ? 400 : 800; // Faster switch for Trader
+        const switchDelay = nextMode === 'TRADER' ? 400 : 800; 
         const totalDuration = nextMode === 'TRADER' ? 1000 : 2000;
 
         setTimeout(() => {
@@ -144,7 +144,7 @@ const DualModeSection = () => {
         <section className="relative overflow-hidden transition-colors duration-1000"
             style={{ backgroundColor: currentTheme.bg }}>
 
-            {/* Background Glows */}
+            {}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <motion.div
                     animate={{
@@ -156,7 +156,7 @@ const DualModeSection = () => {
 
             <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
 
-                {/* Mode Toggle UI */}
+                {}
                 <div className="flex justify-center mb-16">
                     <div className="p-1 rounded-full flex gap-2 items-center relative backdrop-blur-md border transition-all duration-300"
                         style={{
@@ -186,10 +186,10 @@ const DualModeSection = () => {
                     </div>
                 </div>
 
-                {/* Main Content Layout */}
+                {}
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 min-h-[600px]">
 
-                    {/* Text Column */}
+                    {}
                     <motion.div
                         initial={false}
                         animate={{ opacity: isTransitioning ? 0 : 1, x: isTransitioning ? -20 : 0 }}
@@ -224,7 +224,7 @@ const DualModeSection = () => {
 
                         {mode === 'TRADER' ? (
                             <div className="flex flex-col gap-16 relative pl-6">
-                                {/* Vertical connection line */}
+                                {}
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#1E5EFF] via-[#38BDF8] to-transparent opacity-50" />
 
                                 {content[mode].features.map((feature, idx) => (
@@ -253,7 +253,7 @@ const DualModeSection = () => {
                             </div>
                         ) : (
                             <div className="flex flex-col gap-16 relative pl-6">
-                                {/* Vertical connection line */}
+                                {}
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#2BBFA3] via-[#2BBFA3] to-transparent opacity-50" />
 
                                 {content[mode].features.map((feature, idx) => (
@@ -283,7 +283,7 @@ const DualModeSection = () => {
                         )}
                     </motion.div>
 
-                    {/* Visual Column */}
+                    {}
                     <motion.div
                         initial={false}
                         animate={{
@@ -302,7 +302,7 @@ const DualModeSection = () => {
                 </div>
             </div>
 
-            {/* TRANSITION OVERLAY */}
+            {}
             <AnimatePresence>
                 {isTransitioning && transitionData && (
                     <>

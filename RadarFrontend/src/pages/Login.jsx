@@ -50,10 +50,10 @@ export default function Login() {
 
     try {
       const res = await api.post('/auth/login', {
-        username: identifier, // Backend expects username currently, but let's check. 
-        // Wait, backend logic: const { username, password } = req.body;
-        // But frontend allows "email or phone". backend might only support username. 
-        // For now, sending as username. ideally backend handles email too.
+        username: identifier, 
+        
+        
+        
         password
       });
 
