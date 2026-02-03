@@ -17,19 +17,18 @@ const Preloader = ({ children }) => {
             }, 2200);
             return () => clearTimeout(timer);
         } else {
-            // Ensure simple immediate "load" if not on home (though state is already false)
             setIsLoading(false);
         }
     }, [shouldShowPreloader]);
 
     return (
         <>
-            {/* Main Content - Always mounted, stays visible underneath */}
+            { }
             <div className={isLoading ? "h-screen overflow-hidden" : ""}>
                 {children}
             </div>
 
-            {/* Preloader Overlay - Fades out nicely */}
+            { }
             <AnimatePresence>
                 {isLoading && (
                     <motion.div
@@ -38,21 +37,21 @@ const Preloader = ({ children }) => {
                         exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
                         className="fixed inset-0 z-[9999] bg-[#020617] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans']"
                     >
-                        {/* Background Pulsing Gradients */}
+                        { }
                         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                             <div className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] bg-sky-500/5 rounded-full blur-[100px] animate-pulse" />
                             <div className="absolute bottom-[20%] right-[20%] w-[30vw] h-[30vw] bg-purple-500/5 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: "1s" }} />
                         </div>
 
                         <div className="relative z-10 flex flex-col items-center gap-8">
-                            {/* Logo Container */}
+                            { }
                             <motion.div
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 className="relative"
                             >
-                                {/* Glowing halo behind logo */}
+                                { }
                                 <motion.div
                                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
                                     transition={{ duration: 2, repeat: Infinity }}
@@ -67,7 +66,7 @@ const Preloader = ({ children }) => {
                                 </div>
                             </motion.div>
 
-                            {/* Text & Typography */}
+                            { }
                             <div className="text-center space-y-3">
                                 <motion.h1
                                     initial={{ y: 20, opacity: 0 }}
@@ -95,7 +94,7 @@ const Preloader = ({ children }) => {
                                 </motion.p>
                             </div>
 
-                            {/* Loading Bar Animation */}
+                            { }
                             <div className="w-32 h-[2px] bg-white/5 rounded-full mt-6 overflow-hidden relative">
                                 <motion.div
                                     initial={{ x: "-100%" }}

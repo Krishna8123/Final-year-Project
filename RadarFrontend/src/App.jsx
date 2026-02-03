@@ -6,8 +6,6 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 
-import Preloader from './components/Preloader';
-
 function App() {
   return (
     <Router>

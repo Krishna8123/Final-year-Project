@@ -25,7 +25,7 @@ const executeTrade = async (req, res) => {
         return res.status(400).json({ error: "Missing trade details" });
     }
 
-    // ... rest of logic remains, just removed manual userId validation since authMiddleware handles it
+    
 
     const qty = Number(quantity);
     const px = Number(price);

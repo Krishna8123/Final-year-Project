@@ -24,7 +24,7 @@ const authMiddleware = async (req, res, next) => {
             res.status(401).json({ error: 'Not authorized, token failed' });
         }
     } else {
-        // Also support x-auth-token for legacy flexibility if needed, but Bearer is standard
+        
         if (req.headers['x-auth-token']) {
             try {
                 token = req.headers['x-auth-token'];

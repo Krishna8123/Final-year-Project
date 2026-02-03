@@ -26,7 +26,7 @@ export default function TickerTape() {
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
             >
-                {/* Render twice for seamless loop */}
+                {}
                 {[...tickers, ...tickers].map((item, i) => (
                     <div key={i} className="flex items-center mx-6 gap-2">
                         <span className="font-bold text-white/80">{item.symbol}</span>

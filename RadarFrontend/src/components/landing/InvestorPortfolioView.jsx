@@ -3,21 +3,21 @@ import { motion } from 'framer-motion';
 import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 
 const InvestorPortfolioView = () => {
-    // Interactive Chart Data (Simulating the curve in the image)
+    
     const data = [
         { time: '10:00', val: 25250 },
         { time: '10:30', val: 25180 },
         { time: '11:00', val: 25220 },
         { time: '11:30', val: 25280 },
         { time: '12:00', val: 25340 },
-        { time: '12:30', val: 25360 }, // Dip start
-        { time: '13:00', val: 25370 }, // Mid dip
-        { time: '13:30', val: 25400 }, // Recovery
+        { time: '12:30', val: 25360 }, 
+        { time: '13:00', val: 25370 }, 
+        { time: '13:30', val: 25400 }, 
         { time: '14:00', val: 25480 },
-        { time: '14:30', val: 25520 }, // Peak
+        { time: '14:30', val: 25520 }, 
     ];
 
-    // Custom Tooltip to mimic the "Val : 25360" style
+    
     const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
@@ -39,25 +39,25 @@ const InvestorPortfolioView = () => {
             transition={{ duration: 0.5 }}
             className="w-full relative shadow-2xl rounded-2xl overflow-hidden border border-gray-100 bg-white group"
         >
-            {/* Base Image */}
+            {}
             <img
                 src="/investor_graph_base.png"
                 alt="Investor Market Summary"
                 className="w-full h-auto block pointer-events-none select-none"
             />
 
-            {/* Interactive Overlay Layer */}
-            {/* Positioning estimated based on standard screenshot layout: 
-                Top: ~35% (below header/number)
-                Left: ~5% (margin)
-                Width: ~65% (stops before side panel)
-                Height: ~55% (bottom area)
-            */}
+            {}
+            {
+
+
+
+
+}
             <div className="absolute top-[35%] left-[2%] w-[68%] h-[55%] z-10 opacity-0 hover:opacity-100 transition-opacity duration-300">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={data}>
                         <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#059669', strokeWidth: 1, strokeDasharray: '4 4' }} />
-                        {/* Invisible area just for hit testing */}
+                        {}
                         <Area
                             type="monotone"
                             dataKey="val"

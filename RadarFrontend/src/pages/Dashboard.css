@@ -1,4 +1,4 @@
-/* Glass Utility */
+
 .glass-panel {
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-/* Neon Glow Animation */
+
 @keyframes neonPulse {
   0% {
     box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
@@ -24,7 +24,7 @@
   }
 }
 
-/* Reset & Base */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -57,7 +57,7 @@ body {
   }
 }
 
-/* Navbar */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -94,11 +94,11 @@ body {
   height: 40px;
   width: auto;
   border-radius: 8px;
-  /* border: 2px solid var(--neon-blue); */
-  /* box-shadow: 0 0 10px var(--neon-blue); */
+  
+  
 }
 
-/* Toggles */
+
 .toggle-wrapper {
   display: flex;
   align-items: center;
@@ -182,14 +182,14 @@ input:checked+.slider:before {
   border-color: var(--neon-blue);
 }
 
-/* View Containers */
+
 .view-container {
   max-width: 1400px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-/* Search */
+
 .search-section {
   text-align: center;
   margin-bottom: 50px;
@@ -253,7 +253,7 @@ input:checked+.slider:before {
   box-shadow: 0 0 20px var(--neon-purple);
 }
 
-/* Grids */
+
 .grid-investor {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -267,7 +267,7 @@ input:checked+.slider:before {
   gap: 30px;
 }
 
-/* Cards */
+
 .main-chart-card,
 .movers-card,
 .news-card,
@@ -293,10 +293,10 @@ input:checked+.slider:before {
   text-shadow: 0 0 10px rgba(10, 255, 104, 0.3);
 }
 
-/* Chart Gradients */
-/* Note: These are SVG define updates in JSX mostly, but styles help */
 
-/* News */
+
+
+
 .news-item {
   border-bottom: 1px solid var(--glass-border);
   padding: 20px 0;
@@ -323,7 +323,7 @@ input:checked+.slider:before {
   border: 1px solid #cbd5e1;
 }
 
-/* Movers */
+
 .mover-item {
   border-bottom: 1px solid var(--glass-border);
   padding: 15px 0;
@@ -343,7 +343,7 @@ input:checked+.slider:before {
   text-shadow: 0 0 8px rgba(10, 255, 104, 0.2);
 }
 
-/* Trader View Specifics */
+
 .trader-grid {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -410,7 +410,7 @@ input:checked+.slider:before {
   font-size: 1.1rem;
 }
 
-/* Ticker Bar */
+
 .ticker-bar {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--glass-border);

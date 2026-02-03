@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 const PulseIcon = ({ className }) => {
     return (
         <div className={`relative flex items-center justify-center ${className} bg-[#1F3F2E] rounded-2xl overflow-hidden`}>
-            {/* Base Icon Shape or Background */}
+            {}
             <div className="absolute inset-0 bg-[#348E87]/20" />
 
-            {/* Pulsing Circles */}
+            {}
             <motion.div
                 className="absolute w-full h-full border-2 border-[#6FFFE9] rounded-2xl"
                 animate={{
@@ -34,7 +34,7 @@ const PulseIcon = ({ className }) => {
                 }}
             />
 
-            {/* Inner "On" Indicator */}
+            {}
             <div className="relative z-10 w-1/3 h-1/3 bg-[#6FFFE9] rounded-full shadow-[0_0_15px_#6FFFE9]" />
         </div>
     );
