@@ -7,7 +7,7 @@ const normalizeCrypto = (data) => {
         change_24h: coin.price_change_percentage_24h,
         image: coin.image,
         type: 'CRYPTO',
-        details: coin.details // Passed through
+        details: coin.details 
     }));
 };
 
@@ -34,7 +34,7 @@ const normalizeForex = (data) => {
         change_24h: pair.change,
         image: null,
         type: 'FOREX',
-        details: pair.details // Passed through
+        details: pair.details 
     }));
 };
 

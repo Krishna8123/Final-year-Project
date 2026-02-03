@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 const getWatchlist = async (req, res) => {
     try {
-        const user = req.user; // Attached by authMiddleware
+        const user = req.user; 
         res.json(user.watchlist);
     } catch (error) {
         res.status(500).json({ error: "Server error" });

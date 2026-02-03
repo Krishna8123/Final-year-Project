@@ -20,7 +20,7 @@ export default function WatchlistHub() {
                 {watchlistItems.map((item, i) => (
                     <div key={i} className="group relative flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 hover:border-[#42C0A5]/30 transition-all">
 
-                        {/* Asset Info */}
+                        {}
                         <div className="flex items-center gap-3">
                             <div className="w-1 h-8 rounded-full bg-[#42C0A5]/50"></div>
                             <div>
@@ -32,7 +32,7 @@ export default function WatchlistHub() {
                             </div>
                         </div>
 
-                        {/* Change & Action */}
+                        {}
                         <div className="flex items-center gap-4">
                             <span className={`font-mono text-sm font-bold ${item.change.startsWith('+') ? 'text-[#42C0A5]' : 'text-red-400'}`}>
                                 {item.change}
@@ -52,7 +52,7 @@ export default function WatchlistHub() {
                 ))}
             </div>
 
-            {/* Decorative Blur */}
+            {}
             <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#42C0A5]/20 rounded-full blur-3xl pointer-events-none"></div>
         </div>
     );
