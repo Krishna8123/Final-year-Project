@@ -12,7 +12,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { Search } from "lucide-react";
+import { Search, ChevronDown } from "lucide-react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 import "./Dashboard.css";
@@ -78,15 +78,15 @@ const dominanceData = [
 const COLORS = ["#00f3ff", "#bc13fe", "#0aff68"];
 
 const defaultTiltOptions = {
-  reverse: false,  
-  max: 15,     
-  perspective: 1000,   
-  scale: 1.02,   
-  speed: 1000,   
-  transition: true,   
-  axis: null,   
-  reset: true,   
-  easing: "cubic-bezier(.03,.98,.52,.99)",    
+  reverse: false,
+  max: 15,
+  perspective: 1000,
+  scale: 1.02,
+  speed: 1000,
+  transition: true,
+  axis: null,
+  reset: true,
+  easing: "cubic-bezier(.03,.98,.52,.99)",
 };
 
 export default function Dashboard() {
@@ -146,175 +146,246 @@ export default function Dashboard() {
   );
 }
 
-function InvestorView({ data, movers }) {
+const investorData = {
+  totalValue: "$182,350.25",
+  gainLoss: "+$25,528.60",
+  gainLossPercent: "+17.5%",
+  todayChange: "+$4,680.20",
+  todayPercent: "+2.64%",
+  performanceData: [
+    { name: "JAN", value: 140000 },
+    { name: "FEB", value: 145000 },
+    { name: "MAR", value: 142000 },
+    { name: "APR", value: 148000 },
+    { name: "MAY", value: 155000 },
+    { name: "JUN", value: 162000 },
+    { name: "JUL", value: 168000 },
+    { name: "AUG", value: 172000 },
+    { name: "SEP", value: 175000 },
+    { name: "OCT", value: 178000 },
+    { name: "NOV", value: 180000 },
+    { name: "DEC", value: 182350 },
+  ],
+  marketOverview: [
+    { name: "NIFTY", value: "25,450", change: "+275", percent: "+1.09%" },
+    { name: "SENSEX", value: "79,250", change: "+658", percent: "+0.84%" },
+    { name: "NASDAQ", value: "14,345", change: "+82", percent: "+0.50%" },
+    { name: "S&P 500", value: "7,281", change: "+32", percent: "+0.44%" },
+  ],
+  holdings: [
+    { name: "Equity", value: 63, color: "#34D399" },
+    { name: "Debt", value: 23, color: "#10B981" },
+    { name: "Cash", value: 14, color: "#059669" },
+  ],
+  transactions: [
+    { date: "2025", type: "BUY", stock: "20", amount: "3720.00" },
+    { date: "2025", type: "DEF", stock: "55", amount: "3150.00" },
+    { date: "2025", type: "CHI", stock: "20", amount: "3000.00" },
+  ],
+};
+
+function InvestorView() {
+  const [activeTab, setActiveTab] = useState("Portfolio");
+
   return (
-    <div className="view-container investor">
-      <motion.div
-        className="search-section"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="search-header-text">
-          <h2>Market Research 🔍</h2>
-          <p>Search for stocks, ETFs, or crypto to analyze fundamentals.</p>
+    <div className="investor-layout">
+      {/* Sidebar */}
+      <aside className="investor-sidebar">
+        <div className="sidebar-logo">
+          <img src="/radar-logo-final.jpg" alt="Logo" className="w-8 h-8 rounded-lg" />
+          <span>INT333</span>
         </div>
-        <div className="search-bar-wrapper" style={{ margin: '0 auto' }}>
-          <div className="search-input-container">
-            <Search className="search-icon" />
-            <input
-              type="text"
-              placeholder="Search e.g. AAPL, BTC, Nvidia..."
-              className="main-search-input"
-            />
+        <nav className="sidebar-nav">
+          {["Overview", "Portfolio", "Performance", "Market", "Watchlist", "Settings"].map((item) => (
+            <div
+              key={item}
+              className={`nav-item ${activeTab === item ? 'active' : ''}`}
+              onClick={() => setActiveTab(item)}
+            >
+              <div className={`w-2 h-2 rounded-full ${activeTab === item ? 'bg-[#0F766E]' : 'border border-slate-400'}`}></div>
+              {item}
+            </div>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main className="investor-main">
+        {/* Header */}
+        <header className="investor-header">
+          <div></div> {/* Spacer */}
+          <div className="header-center">
+            <h1 className="header-date">WEDNESDAY, FEBRUARY 4, 2026</h1>
+            <div className="header-status">MARKET : CLOSED • 21:17 PM IST</div>
           </div>
-          <button className="search-button">Search</button>
-        </div>
-      </motion.div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 bg-white/50 px-3 py-1.5 rounded-full border border-white/20">
+              <img src="https://i.pravatar.cc/30" alt="User" className="w-6 h-6 rounded-full" />
+              <span className="text-sm font-medium text-slate-700">Investor Mode</span>
+              <ChevronDown className="w-4 h-4 text-slate-500" />
+            </div>
+          </div>
+        </header>
 
-      <div className="grid-investor">
-        <div className="left-column">
-          <Tilt options={defaultTiltOptions} className="tilt-wrapper">
-            <motion.div
-              className="main-chart-card"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="card-header">
-                <h3>{data.name} ({data.symbol})</h3>
-                <span className="price-tag">${data.price}</span>
-              </div>
-              <div className="chart-wrapper">
-                <ResponsiveContainer width="100%" height={250}>
-                  <AreaChart data={priceData}>
-                    <defs>
-                      <linearGradient id="colorPriceInv" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#00f3ff" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#00f3ff" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <XAxis dataKey="time" hide />
-                    <YAxis hide domain={["dataMin - 1000", "dataMax + 1000"]} />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: "rgba(5, 5, 20, 0.9)",
-                        borderRadius: "12px",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-                        color: "#fff"
-                      }}
-                      itemStyle={{ color: "#00f3ff" }}
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="price"
-                      stroke="#00f3ff"
-                      strokeWidth={3}
-                      fillOpacity={1}
-                      fill="url(#colorPriceInv)"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </motion.div>
-          </Tilt>
+        {/* Dashboard Grid */}
+        <div className="investor-grid">
+          {/* Top Row Stats */}
+          <div className="inv-card">
+            <div className="stat-card-title">
+              Total Portfolio Value
+            </div>
+            <div className="stat-card-value text-white">{investorData.totalValue}</div>
+            <div className="stat-card-sub text-green-400">{investorData.todayPercent} Today</div>
+          </div>
 
-          <Tilt options={defaultTiltOptions}>
-            <motion.div
-              className="news-card"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="card-header">
-                <h3>📰 Latest News for {data.name}</h3>
-                <button className="view-all-btn">View All</button>
+          <div className="inv-card">
+            <div className="stat-card-title">
+              Gain/Loss (All Time)
+              <span className="text-xs">↗</span>
+            </div>
+            <div className="stat-card-value text-green-400">{investorData.gainLoss}</div>
+            <div className="stat-card-sub text-green-400/80">{investorData.gainLossPercent}</div>
+          </div>
+
+          <div className="inv-card relative overflow-hidden">
+            <div className="relative z-10">
+              <div className="stat-card-title">
+                Today's Change
+                <span className="text-xs">↗</span>
               </div>
-              <div className="news-list">
-                {mockNews.map((news) => (
-                  <div key={news.id} className="news-item">
-                    <div className="news-content">
-                      <span className="news-source">{news.source} • {news.time}</span>
-                      <h4 className="news-title">{news.title}</h4>
-                    </div>
-                    <span className={`news-badge ${news.sentiment.toLowerCase()}`}>
-                      {news.sentiment}
-                    </span>
+              <div className="stat-card-value text-green-400">{investorData.todayChange}</div>
+              <div className="stat-card-sub text-green-400/80">{investorData.todayPercent}</div>
+            </div>
+            <div className="absolute bottom-0 right-0 w-32 h-16 opacity-50">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={investorData.performanceData.slice(8)}>
+                  <Area type="monotone" dataKey="value" stroke="#34D399" fill="#10B981" fillOpacity={0.2} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Performance Chart - Large Area */}
+          <div className="inv-card area-perf flex flex-col">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-lg font-medium text-slate-300">Portfolio Performance</h3>
+              <div className="flex gap-2 text-xs">
+                <span className="text-slate-500">1M</span>
+                <span className="text-white font-bold">1Y</span>
+                <span className="text-slate-500">ALL</span>
+              </div>
+            </div>
+            <div className="flex-1 w-full min-h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={investorData.performanceData}>
+                  <defs>
+                    <linearGradient id="colorPerf" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#2BBFA3" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#2BBFA3" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <Tooltip
+                    contentStyle={{ backgroundColor: "#0F172A", border: "none", borderRadius: "8px", color: "white" }}
+                  />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 10 }} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 10 }} domain={['dataMin', 'auto']} />
+                  <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.05)" />
+                  <Area type="monotone" dataKey="value" stroke="#2BBFA3" strokeWidth={2} fillOpacity={1} fill="url(#colorPerf)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Market Overview */}
+          <div className="inv-card area-market">
+            <h3 className="text-lg font-medium text-slate-300 mb-6">Market Overview</h3>
+            <div className="space-y-5">
+              {investorData.marketOverview.map((market) => (
+                <div key={market.name} className="flex justify-between items-center text-sm border-b border-white/5 pb-2 last:border-0">
+                  <span className="text-slate-400 font-medium">{market.name}</span>
+                  <span className="text-white font-bold">{market.value}</span>
+                  <div className={`text-right ${market.change.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
+                    <div>{market.change}</div>
+                    <div className="text-xs opacity-70">{market.percent}</div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          </Tilt>
-        </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="right-column">
-          <Tilt options={defaultTiltOptions}>
-            <motion.div
-              className="allocation-card"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <h3>🌍 Market Dominance</h3>
-              <div className="pie-wrapper">
-                <ResponsiveContainer width="100%" height={200}>
-                  <PieChart>
-                    <Pie
-                      data={dominanceData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                      stroke="none"
-                    >
-                      {dominanceData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Legend verticalAlign="bottom" height={36} />
-                    <Tooltip
-                      contentStyle={{
-                        backgroundColor: "rgba(5, 5, 20, 0.9)",
-                        borderRadius: "12px",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        color: "#fff"
-                      }}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </motion.div>
-          </Tilt>
+          {/* Holdings Allocation */}
+          <div className="inv-card area-holdings flex items-center justify-between">
+            <div className="relative w-32 h-32">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie data={investorData.holdings} innerRadius={40} outerRadius={60} paddingAngle={5} dataKey="value">
+                    {investorData.holdings.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="flex flex-col gap-2 text-sm pr-4">
+              <h3 className="text-slate-300 mb-2 font-medium">Holdings Allocation</h3>
+              {investorData.holdings.map((h) => (
+                <div key={h.name} className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full" style={{ backgroundColor: h.color }}></div>
+                  <span className="text-slate-400">{h.name}</span>
+                  <span className="text-white ml-auto font-bold">{h.value}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          <Tilt options={defaultTiltOptions}>
-            <motion.div
-              className="movers-card"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <h3>🚀 Top Movers</h3>
-              <ul className="movers-list">
-                {movers.map((m) => (
-                  <li key={m.symbol} className="mover-item">
-                    <div className="mover-info">
-                      <span className="mover-symbol">{m.symbol}</span>
-                      <span className="mover-name">{m.name}</span>
-                    </div>
-                    <div className="mover-price">
-                      <span>{m.price}</span>
-                      <span className="change-positive">{m.change}</span>
-                    </div>
-                  </li>
+          {/* Transactions */}
+          <div className="inv-card area-trans">
+            <div className="flex justify-between items-end mb-4">
+              <h3 className="text-slate-300">Market Transactions</h3>
+              <span className="text-xs text-slate-500 cursor-pointer">View All</span>
+            </div>
+            <table className="w-full text-xs text-left">
+              <thead>
+                <tr className="text-slate-500 border-b border-white/5">
+                  <th className="pb-2 font-normal">Date</th>
+                  <th className="pb-2 font-normal">Type</th>
+                  <th className="pb-2 font-normal">Stocks</th>
+                  <th className="pb-2 text-right font-normal">Amount</th>
+                </tr>
+              </thead>
+              <tbody className="text-slate-300">
+                {investorData.transactions.map((t, i) => (
+                  <tr key={i} className="border-b border-white/5 last:border-0">
+                    <td className="py-2.5">{t.date}</td>
+                    <td className="py-2.5"><span className="bg-white/10 px-1.5 py-0.5 rounded text-[10px]">{t.type}</span></td>
+                    <td className="py-2.5">{t.stock}</td>
+                    <td className="py-2.5 text-right">{t.amount}</td>
+                  </tr>
                 ))}
-              </ul>
-            </motion.div>
-          </Tilt>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Insights */}
+          <div className="inv-card area-insights">
+            <h3 className="text-slate-300 mb-4">Market Insights</h3>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li className="flex gap-2">
+                <div className="mt-1 w-4 h-4 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <span>Weekly Market Overview</span>
+              </li>
+              <li className="flex gap-2">
+                <div className="mt-1 w-4 h-4 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <span>RBI Announces Interest Rate Decision</span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

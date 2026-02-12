@@ -84,21 +84,13 @@ const InvestorModeSection = () => {
     ];
 
     return (
-        
-        <section className="relative w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col items-center justify-center min-h-[800px] transition-colors duration-1000 ease-in-out">
 
-            {}
-            <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-                className={`absolute inset-0 ${cards[activeIndex].sectionBg}`}
-            />
-            {}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80 pointer-events-none" />
+        <section id="features-section" className={`relative w-full py-10 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col items-center justify-center min-h-screen transition-colors duration-1000 ease-in-out ${cards[activeIndex].sectionBg}`}>
 
-            {}
+            {/* Overlay for contrast if needed */}
+            <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+
+            { }
             <motion.div
                 animate={{
                     background: cards[activeIndex].glow.includes('#') ? cards[activeIndex].glow : `var(--${cards[activeIndex].glow.split('-')[1]}-500)`
@@ -108,7 +100,7 @@ const InvestorModeSection = () => {
 
             <div className="max-w-7xl mx-auto relative z-10 w-full flex flex-col items-center">
 
-                {}
+                { }
                 <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center mb-6 px-4">
                     <motion.h2
                         className="text-3xl md:text-5xl font-bold tracking-tight text-white mx-auto whitespace-nowrap"
@@ -120,10 +112,10 @@ const InvestorModeSection = () => {
                     </p>
                 </div>
 
-                {}
+                { }
                 <div className="relative w-full max-w-4xl h-[400px] flex items-center justify-center perspective-[1000px] -mt-4">
 
-                    {}
+                    { }
                     <div
                         className="absolute left-0 top-0 h-full w-1/6 z-30 cursor-pointer rounded-l-3xl"
                         onClick={() => setActiveIndex((prev) => (prev - 1 + cards.length) % cards.length)}
@@ -133,19 +125,19 @@ const InvestorModeSection = () => {
                         onClick={() => setActiveIndex((prev) => (prev + 1) % cards.length)}
                     />
 
-                    {}
+                    { }
                     <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeIndex}
-                                
+
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
                                 className="absolute w-full max-w-2xl bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 shadow-2xl flex flex-col items-center text-center pointer-events-auto"
                             >
-                                {}
+                                { }
                                 <div className="relative mb-6">
                                     <div className={`absolute inset-0 ${cards[activeIndex].glow} blur-2xl opacity-20 rounded-full`} />
                                     <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-inner">
@@ -153,14 +145,14 @@ const InvestorModeSection = () => {
                                     </div>
                                 </div>
 
-                                {}
+                                { }
                                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{cards[activeIndex].title}</h3>
                                 <h4 className={`text-base md:text-lg font-medium ${cards[activeIndex].iconColor} mb-4`}>{cards[activeIndex].subtitle}</h4>
                                 <p className="text-slate-300 leading-relaxed text-base md:text-lg max-w-lg">
                                     {cards[activeIndex].description}
                                 </p>
 
-                                {}
+                                { }
                                 <div className="mt-8 flex items-center justify-center gap-2 z-40">
                                     {cards.map((_, idx) => (
                                         <div
@@ -178,7 +170,7 @@ const InvestorModeSection = () => {
                     </div>
                 </div>
 
-                {}
+                { }
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center max-w-5xl w-full">
                     <AnimatePresence mode="wait">
                         {cards[activeIndex].subFeatures.map((feature, idx) => (

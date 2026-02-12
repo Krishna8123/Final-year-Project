@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-    Activity, Search, Bell, Menu, X
+    Activity, Bell, Menu, X
 } from 'lucide-react';
 
 // New Sections
@@ -14,42 +14,31 @@ import FeaturesSection from '../components/landing/FeaturesSection';
 
 const Navbar = () => (
     <div className="absolute top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <nav className="w-full max-w-7xl flex justify-between items-center backdrop-blur-xl bg-[#348E87] rounded-2xl px-6 py-3 border border-[#6FFFE9]/20 shadow-lg shadow-[#348E87]/20 transition-all duration-300">
-            {}
-            <div className="flex items-center gap-8">
-                <div className="flex items-center gap-3">
-                    <div className="relative">
-                        <img
-                            src="/radar-logo-final.jpg"
-                            alt="Radar Logo"
-                            className="h-8 w-auto rounded-full object-contain"
-                        />
-                    </div>
-                    <span className="text-xl font-black text-white tracking-tighter font-['Plus_Jakarta_Sans']">RADAR</span>
-                </div>
-
-                <div className="hidden lg:flex items-center gap-6 text-sm font-bold text-white">
-                    <a href="#" className="hover:text-white transition-colors">Overview</a>
-                    <a href="#" className="hover:text-white transition-colors">Assets</a>
-                    <a href="#" className="hover:text-white transition-colors">Watchlist</a>
-                    <a href="#" className="hover:text-white transition-colors">Signals</a>
-                </div>
-            </div>
-
-            {}
-            <div className="flex items-center gap-4">
-                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/10 border border-white/10 text-white text-sm focus-within:border-white/30 focus-within:text-white transition-all">
-                    <Search size={14} />
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        className="bg-transparent border-none outline-none text-white w-24 focus:w-32 transition-all placeholder:text-white/40"
+        <nav className="w-full max-w-7xl flex justify-between items-center backdrop-blur-xl bg-gradient-light rounded-2xl pl-6 pr-3 py-2 border-2 border-white shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-300">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+                <div className="relative">
+                    <img
+                        src="/radar-logo-final.jpg"
+                        alt="Radar Logo"
+                        className="h-8 w-auto rounded-full object-contain"
                     />
                 </div>
+                <span className="text-xl font-black text-gradient-dark tracking-tighter font-['Plus_Jakarta_Sans']">RADAR</span>
+            </div>
 
-                <div className="flex gap-2">
-                    <a href="/login" className="px-5 py-2 text-sm font-bold bg-white text-[#348E87] hover:bg-white/90 rounded-full transition-all">Log In</a>
-                </div>
+            {/* Centered Navigation Links */}
+            <div className="hidden lg:flex items-center gap-8 text-sm font-bold text-gradient-dark absolute left-1/2 -translate-x-1/2">
+                <a href="#global-assets" className="hover-text-teal transition-colors duration-300">Edge</a>
+                <a href="#trader-mode" className="hover-text-teal transition-colors duration-300">Platform</a>
+                <a href="#features-section" className="hover-text-teal transition-colors duration-300">Insights</a>
+            </div>
+
+            {/* Right Actions */}
+            <div className="flex items-center gap-2">
+                <a href="/login" className="btn-gradient-light px-6 py-2.5 rounded-full font-bold text-sm hover:opacity-90 transition-all shadow-lg shadow-white/10">
+                    <span className="text-gradient-dark">Log In</span>
+                </a>
             </div>
         </nav>
     </div>
@@ -114,7 +103,7 @@ const Footer = () => (
 export default function Home() {
     return (
         <Preloader>
-            <div className="min-h-screen bg-[#F8F5EF] text-gray-900 font-sans selection:bg-radar-cyan selection:text-radar-dark overflow-x-hidden">
+            <div className="min-h-screen custom-blue-gradient text-gray-900 font-sans selection:bg-radar-cyan selection:text-radar-dark overflow-x-hidden">
                 <Navbar />
 
                 <main className="pt-20">

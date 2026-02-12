@@ -10,17 +10,17 @@ function cn(...inputs) {
 }
 
 const DualModeSection = () => {
-    const [mode, setMode] = useState('TRADER');
+    const [mode, setMode] = useState('INVESTOR');
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [transitionData, setTransitionData] = useState(null);
 
-    
+
     const content = {
         TRADER: {
             theme: {
-                bg: '#020617', 
+                bg: '#020617',
                 surface: '#0F172A',
-                glow: '#38BDF8', 
+                glow: '#38BDF8',
                 text: '#FFFFFF'
             },
             title: "Built for Market Reading, Not Guesswork",
@@ -55,7 +55,7 @@ const DualModeSection = () => {
     const currentTheme = content[mode].theme;
     const CurrentVisual = content[mode].Visual;
 
-    
+
     const TraderOverlayVisual = () => (
         <div className="flex gap-2 items-end h-32">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -127,7 +127,7 @@ const DualModeSection = () => {
 
         setIsTransitioning(true);
 
-        const switchDelay = nextMode === 'TRADER' ? 400 : 800; 
+        const switchDelay = nextMode === 'TRADER' ? 400 : 800;
         const totalDuration = nextMode === 'TRADER' ? 1000 : 2000;
 
         setTimeout(() => {
@@ -141,10 +141,12 @@ const DualModeSection = () => {
     };
 
     return (
-        <section className="relative overflow-hidden transition-colors duration-1000"
-            style={{ backgroundColor: currentTheme.bg }}>
+        <section id="trader-mode" className="min-h-screen flex flex-col justify-center relative overflow-hidden transition-colors duration-1000 animate-rotate-bg"
+            style={{
+                background: `linear-gradient(var(--angle), ${currentTheme.bg}, ${currentTheme.surface}, ${currentTheme.bg})`
+            }}>
 
-            {}
+            { }
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <motion.div
                     animate={{
@@ -154,16 +156,16 @@ const DualModeSection = () => {
                 />
             </div>
 
-            <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
+            <div className="container mx-auto px-6 lg:px-12 py-12 relative z-10">
 
-                {}
-                <div className="flex justify-center mb-16">
+                { }
+                <div className="flex justify-center mb-8">
                     <div className="p-1 rounded-full flex gap-2 items-center relative backdrop-blur-md border transition-all duration-300"
                         style={{
                             backgroundColor: `${currentTheme.surface}80`,
                             borderColor: `${currentTheme.glow}40`
                         }}>
-                        {['TRADER', 'INVESTOR'].map((m) => (
+                        {['INVESTOR', 'TRADER'].map((m) => (
                             <button
                                 key={m}
                                 onClick={() => m !== mode && handleToggle()}
@@ -186,10 +188,10 @@ const DualModeSection = () => {
                     </div>
                 </div>
 
-                {}
-                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 min-h-[600px]">
+                { }
+                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 min-h-[400px]">
 
-                    {}
+                    { }
                     <motion.div
                         initial={false}
                         animate={{ opacity: isTransitioning ? 0 : 1, x: isTransitioning ? -20 : 0 }}
@@ -223,8 +225,8 @@ const DualModeSection = () => {
                         </motion.p>
 
                         {mode === 'TRADER' ? (
-                            <div className="flex flex-col gap-16 relative pl-6">
-                                {}
+                            <div className="flex flex-col gap-8 relative pl-6">
+                                { }
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#1E5EFF] via-[#38BDF8] to-transparent opacity-50" />
 
                                 {content[mode].features.map((feature, idx) => (
@@ -252,8 +254,8 @@ const DualModeSection = () => {
                                 ))}
                             </div>
                         ) : (
-                            <div className="flex flex-col gap-16 relative pl-6">
-                                {}
+                            <div className="flex flex-col gap-8 relative pl-6">
+                                { }
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#2BBFA3] via-[#2BBFA3] to-transparent opacity-50" />
 
                                 {content[mode].features.map((feature, idx) => (
@@ -283,7 +285,7 @@ const DualModeSection = () => {
                         )}
                     </motion.div>
 
-                    {}
+                    { }
                     <motion.div
                         initial={false}
                         animate={{
@@ -302,7 +304,7 @@ const DualModeSection = () => {
                 </div>
             </div>
 
-            {}
+            { }
             <AnimatePresence>
                 {isTransitioning && transitionData && (
                     <>
