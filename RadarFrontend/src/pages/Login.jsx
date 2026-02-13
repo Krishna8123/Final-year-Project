@@ -218,22 +218,6 @@ export default function Login() {
               </svg>
               Sign in with Google
             </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              type="button"
-              onClick={() => {
-                localStorage.setItem('token', 'demo-token');
-                localStorage.setItem('mode', 'INVESTOR');
-                localStorage.setItem('userMode', 'investor');
-                localStorage.setItem('user', JSON.stringify({ name: 'Demo User' }));
-                window.location.href = '/dashboard';
-              }}
-              className="w-full py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all shadow-lg text-sm tracking-[0.05em] uppercase flex items-center justify-center gap-2"
-            >
-              <span>🚀</span> Try Live Demo
-            </motion.button>
           </div>
 
           <div className="text-center pt-2">
