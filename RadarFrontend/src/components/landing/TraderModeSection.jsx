@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import LaptopTradingView from './LaptopTradingView';
 import InvestorPortfolioView from './InvestorPortfolioView';
+import { Tilt } from 'react-tilt';
 
 function cn(...inputs) {
     return twMerge(clsx(inputs));
@@ -14,13 +15,13 @@ const DualModeSection = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [transitionData, setTransitionData] = useState(null);
 
-    
+
     const content = {
         TRADER: {
             theme: {
-                bg: '#020617', 
+                bg: '#020617',
                 surface: '#0F172A',
-                glow: '#38BDF8', 
+                glow: '#38BDF8',
                 text: '#FFFFFF'
             },
             title: "Built for Market Reading, Not Guesswork",
@@ -55,7 +56,7 @@ const DualModeSection = () => {
     const currentTheme = content[mode].theme;
     const CurrentVisual = content[mode].Visual;
 
-    
+
     const TraderOverlayVisual = () => (
         <div className="flex gap-2 items-end h-32">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -127,7 +128,7 @@ const DualModeSection = () => {
 
         setIsTransitioning(true);
 
-        const switchDelay = nextMode === 'TRADER' ? 400 : 800; 
+        const switchDelay = nextMode === 'TRADER' ? 400 : 800;
         const totalDuration = nextMode === 'TRADER' ? 1000 : 2000;
 
         setTimeout(() => {
@@ -144,7 +145,7 @@ const DualModeSection = () => {
         <section className="relative overflow-hidden transition-colors duration-1000"
             style={{ backgroundColor: currentTheme.bg }}>
 
-            {}
+            { }
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <motion.div
                     animate={{
@@ -156,7 +157,7 @@ const DualModeSection = () => {
 
             <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
 
-                {}
+                { }
                 <div className="flex justify-center mb-16">
                     <div className="p-1 rounded-full flex gap-2 items-center relative backdrop-blur-md border transition-all duration-300"
                         style={{
@@ -186,10 +187,10 @@ const DualModeSection = () => {
                     </div>
                 </div>
 
-                {}
+                { }
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 min-h-[600px]">
 
-                    {}
+                    { }
                     <motion.div
                         initial={false}
                         animate={{ opacity: isTransitioning ? 0 : 1, x: isTransitioning ? -20 : 0 }}
@@ -224,7 +225,7 @@ const DualModeSection = () => {
 
                         {mode === 'TRADER' ? (
                             <div className="flex flex-col gap-16 relative pl-6">
-                                {}
+                                { }
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#1E5EFF] via-[#38BDF8] to-transparent opacity-50" />
 
                                 {content[mode].features.map((feature, idx) => (
@@ -253,7 +254,7 @@ const DualModeSection = () => {
                             </div>
                         ) : (
                             <div className="flex flex-col gap-16 relative pl-6">
-                                {}
+                                { }
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#2BBFA3] via-[#2BBFA3] to-transparent opacity-50" />
 
                                 {content[mode].features.map((feature, idx) => (
@@ -283,7 +284,8 @@ const DualModeSection = () => {
                         )}
                     </motion.div>
 
-                    {}
+                    { }
+                    {/* Right Side: Visual Demo */}
                     <motion.div
                         initial={false}
                         animate={{
@@ -295,14 +297,23 @@ const DualModeSection = () => {
                         className="w-full lg:w-1/2 relative perspective-1000"
                     >
                         <div className="w-full aspect-square lg:aspect-auto flex items-center justify-center">
-                            <CurrentVisual />
+                            <Tilt options={{
+                                max: 15,
+                                scale: 1.02,
+                                speed: 1000,
+                                perspective: 1000,
+                                glare: true,
+                                "max-glare": 0.5
+                            }} className="w-full">
+                                <CurrentVisual />
+                            </Tilt>
                         </div>
                     </motion.div>
 
                 </div>
             </div>
 
-            {}
+            { }
             <AnimatePresence>
                 {isTransitioning && transitionData && (
                     <>
