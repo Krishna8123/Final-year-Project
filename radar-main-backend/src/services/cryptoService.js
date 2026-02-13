@@ -11,7 +11,7 @@ const fetchCryptoData = async () => {
 
         const response = await axios.get(url, {
             params,
-            timeout: 4000,
+            timeout: 3000,
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
             }
@@ -27,7 +27,32 @@ const fetchCryptoData = async () => {
             }
         }));
     } catch (error) {
-        return [];
+        console.warn("CoinGecko failed, switching to CoinCap...", error.message);
+        try {
+            const coincapUrl = 'https://api.coincap.io/v2/assets';
+            const coincapRes = await axios.get(coincapUrl, {
+                params: { ids: 'bitcoin,ethereum,solana,xrp,cardano', limit: 5 }
+            });
+
+            return coincapRes.data.data.map(coin => ({
+                id: coin.id,
+                symbol: coin.symbol.toLowerCase(),
+                name: coin.name,
+                current_price: parseFloat(parseFloat(coin.priceUsd).toFixed(2)),
+                price_change_percentage_24h: parseFloat(parseFloat(coin.changePercent24Hr).toFixed(2)),
+                market_cap: parseInt(coin.marketCapUsd),
+                total_volume: parseInt(coin.volumeUsd24Hr),
+                details: {
+                    sector: "Blockchain",
+                    market_cap: `$${(parseFloat(coin.marketCapUsd) / 1e9).toFixed(2)}B`,
+                    about: `A decentralized digital currency based on ${coin.id} blockchain.`,
+                    volume: `$${(parseFloat(coin.volumeUsd24Hr) / 1e6).toFixed(2)}M`
+                }
+            }));
+        } catch (ccError) {
+            console.error("CoinCap also failed:", ccError.message);
+            return [];
+        }
     }
 };
 
@@ -35,13 +60,13 @@ const fetchCryptoHistory = async (symbol, interval) => {
     try {
         const coinId = symbol.toLowerCase() === 'btc' ? 'bitcoin' : 'ethereum';
         const days = interval === '1M' ? 30 : 1;
-        
+
         const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart`;
         const response = await axios.get(url, {
             params: { vs_currency: 'usd', days: days },
             timeout: 4000,
             headers: {
-                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
             }
         });
 
@@ -58,14 +83,14 @@ const fetchOrderBook = async (symbol) => {
     try {
         const coinId = symbol.toLowerCase() === 'btc' ? 'bitcoin' : 'ethereum';
         const url = `https://api.coingecko.com/api/v3/coins/${coinId}/depth`;
-         const response = await axios.get(url, {
+        const response = await axios.get(url, {
             params: { vs_currency: 'usd', limit: 5 },
-             timeout: 4000,
+            timeout: 4000,
             headers: {
-                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
             }
         });
-        
+
         return {
             bids: response.data.bids,
             asks: response.data.asks

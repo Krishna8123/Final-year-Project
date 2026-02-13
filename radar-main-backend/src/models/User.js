@@ -31,7 +31,28 @@ const UserSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    settings: {
+        theme: {
+            type: String,
+            enum: ['light', 'dark'],
+            default: 'dark'
+        },
+        notifications: {
+            email: { type: Boolean, default: true },
+            push: { type: Boolean, default: true },
+            priceAlerts: { type: Boolean, default: true }
+        }
+    },
+    pinnedCharts: [{
+        symbol: String,
+        label: String,
+        type: {
+            type: String,
+            enum: ['INDEX', 'STOCK', 'CRYPTO'],
+            default: 'INDEX'
+        }
+    }]
 });
 
 UserSchema.pre('save', async function (next) {

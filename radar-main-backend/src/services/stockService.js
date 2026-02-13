@@ -3,11 +3,11 @@ const { generateHistory } = require('../utils/mockGenerator');
 
 const fetchStockData = async () => {
     return [
-        { 
-            symbol: 'AAPL', 
-            name: 'Apple Inc.', 
-            price: 175.43, 
-            change: 1.25, 
+        {
+            symbol: 'AAPL',
+            name: 'Apple Inc.',
+            price: 175.43,
+            change: 1.25,
             type: 'STOCK',
             details: {
                 pe_ratio: 28.5,
@@ -18,7 +18,7 @@ const fetchStockData = async () => {
             },
             financials: {
                 years: ["2021", "2022", "2023"],
-                revenue: [365, 394, 383], 
+                revenue: [365, 394, 383],
                 net_profit: [94, 99, 97],
                 quarters: {
                     q1: { revenue: 117, profit: 30 },
@@ -28,11 +28,11 @@ const fetchStockData = async () => {
                 }
             }
         },
-        { 
-            symbol: 'TSLA', 
-            name: 'Tesla Inc.', 
-            price: 240.50, 
-            change: -3.10, 
+        {
+            symbol: 'TSLA',
+            name: 'Tesla Inc.',
+            price: 240.50,
+            change: -3.10,
             type: 'STOCK',
             details: {
                 pe_ratio: 70.4,
@@ -53,11 +53,11 @@ const fetchStockData = async () => {
                 }
             }
         },
-        { 
-            symbol: 'NVDA', 
-            name: 'Nvidia Corp.', 
-            price: 460.18, 
-            change: 5.40, 
+        {
+            symbol: 'NVDA',
+            name: 'Nvidia Corp.',
+            price: 460.18,
+            change: 5.40,
             type: 'STOCK',
             details: {
                 pe_ratio: 110.2,
@@ -68,7 +68,7 @@ const fetchStockData = async () => {
             },
             financials: {
                 years: ["2021", "2022", "2023"],
-                revenue: [16, 26, 27], 
+                revenue: [16, 26, 27],
                 net_profit: [4, 9, 4],
                 quarters: {
                     q1: { revenue: 7, profit: 2 },
@@ -105,11 +105,36 @@ const fetchStockHistory = async (symbol, interval = '1D') => {
         return data.map(day => ({
             date: new Date(day.date).toLocaleDateString(),
             price: day.close
-        })).reverse(); 
+        })).reverse();
 
     } catch (error) {
-        console.error("MarketStack Error (Likely Rate Limit), using Mock");
-        return generateHistory(150, 0.02, interval); 
+        console.error("MarketStack Error (Likely Rate Limit), trying Stooq...");
+
+        try {
+            const stooqSymbol = `${symbol}.US`;
+            const stooqUrl = `https://stooq.com/q/d/l/?s=${stooqSymbol}&i=d`;
+
+            const stooqRes = await axios.get(stooqUrl);
+            const csvData = stooqRes.data;
+
+            const lines = csvData.split('\n').slice(1, 31);
+
+            const history = lines.map(line => {
+                const parts = line.split(',');
+                if (parts.length < 5) return null;
+                return {
+                    date: new Date(parts[0]).toLocaleDateString(),
+                    price: parseFloat(parts[4])
+                };
+            }).filter(item => item !== null).reverse();
+
+            if (history.length > 0) return history;
+            throw new Error("Stooq data empty");
+
+        } catch (stooqError) {
+            console.error("Stooq failed, using Mock:", stooqError.message);
+            return generateHistory(150, 0.02, interval);
+        }
     }
 };
 
