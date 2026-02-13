@@ -5,21 +5,20 @@ import { useLocation } from 'react-router-dom';
 const Preloader = ({ children }) => {
     const location = useLocation();
 
-    const shouldShowPreloader = location.pathname === '/';
+    // Check if we should skip preloader based on navigation state or session storage
+    const shouldSkip = location.state?.skipPreloader || sessionStorage.getItem('hasVisited');
 
-    // Start with loading true only if we are on the home page
-    const [isLoading, setIsLoading] = useState(shouldShowPreloader);
+    const [isLoading, setIsLoading] = useState(!shouldSkip && location.pathname === '/');
 
     useEffect(() => {
-        if (shouldShowPreloader) {
+        if (isLoading) {
+            sessionStorage.setItem('hasVisited', 'true');
             const timer = setTimeout(() => {
                 setIsLoading(false);
             }, 2200);
             return () => clearTimeout(timer);
-        } else {
-            setIsLoading(false);
         }
-    }, [shouldShowPreloader]);
+    }, [isLoading]);
 
     return (
         <>

@@ -4,6 +4,7 @@ import React from 'react';
 
 
 
+import { Link } from 'react-router-dom';
 import { TrendingUp, Shield, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Tilt } from 'react-tilt';
@@ -23,9 +24,9 @@ export default function AuthLayout({ children }) {
 
     return (
         <div className="min-h-screen flex font-sans">
-            {}
+            { }
             <div className="hidden lg:flex w-7/12 bg-gradient-to-br from-[#103E46] via-[#1A7870] to-[#42C0A5] text-white flex-col justify-center p-20 relative overflow-hidden">
-                {}
+                { }
                 <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                     <motion.div
                         animate={{ rotate: 360, scale: [1, 1.2, 1] }}
@@ -47,7 +48,7 @@ export default function AuthLayout({ children }) {
                     className="relative z-10 max-w-3xl"
                 >
 
-                    <div className="flex items-center gap-5 mb-12">
+                    <Link to="/" className="flex items-center gap-5 mb-12 hover:opacity-90 transition-opacity">
                         <div className="relative">
                             <div className="absolute inset-0 bg-[#6FFFE9]/20 blur-2xl rounded-full" />
                             <img
@@ -60,10 +61,7 @@ export default function AuthLayout({ children }) {
                             <span className="text-4xl font-black tracking-tighter font-['Plus_Jakarta_Sans'] text-white leading-none">RADAR</span>
                             <span className="text-[10px] font-bold tracking-[0.2em] text-[#6FFFE9] opacity-80 uppercase mt-1">Invest & Trade Smarter</span>
                         </div>
-
-                        {}
-
-                    </div>
+                    </Link>
 
                     <div className="relative">
                         <h1 className="text-6xl font-extrabold leading-tight mb-8 font-['Plus_Jakarta_Sans'] drop-shadow-sm tracking-tight relative z-10">
@@ -90,9 +88,9 @@ export default function AuthLayout({ children }) {
                 </div>
             </div>
 
-            {}
+            { }
             <div className="w-full lg:w-5/12 flex items-center justify-center p-6 relative bg-gradient-to-br from-[#f0fdfa] via-[#e6fffa] to-[#f0fdfa]">
-                {}
+                { }
                 <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
                     <motion.div
                         animate={{ y: [0, -30, 0], x: [0, 20, 0] }}

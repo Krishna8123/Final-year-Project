@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Globe, Star, FlaskConical, GraduationCap } from 'lucide-react';
+import { Tilt } from 'react-tilt';
 
 const InvestorModeSection = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -84,7 +85,6 @@ const InvestorModeSection = () => {
     ];
 
     return (
-
         <section id="features-section" className={`relative w-full py-10 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col items-center justify-center min-h-screen transition-colors duration-1000 ease-in-out ${cards[activeIndex].sectionBg}`}>
 
             {/* Overlay for contrast if needed */}
@@ -130,41 +130,42 @@ const InvestorModeSection = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeIndex}
-
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="absolute w-full max-w-2xl bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 shadow-2xl flex flex-col items-center text-center pointer-events-auto"
+                                className="absolute w-full max-w-2xl pointer-events-auto"
                             >
-                                { }
-                                <div className="relative mb-6">
-                                    <div className={`absolute inset-0 ${cards[activeIndex].glow} blur-2xl opacity-20 rounded-full`} />
-                                    <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-inner">
-                                        {React.createElement(cards[activeIndex].icon, { size: 48, className: `${cards[activeIndex].iconColor} drop-shadow-md` })}
+                                <Tilt options={{ max: 10, scale: 1.02, speed: 1000, glare: true, "max-glare": 0.2 }} className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 shadow-2xl flex flex-col items-center text-center">
+                                    { }
+                                    <div className="relative mb-6">
+                                        <div className={`absolute inset-0 ${cards[activeIndex].glow} blur-2xl opacity-20 rounded-full`} />
+                                        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/10 shadow-inner">
+                                            {React.createElement(cards[activeIndex].icon, { size: 48, className: `${cards[activeIndex].iconColor} drop-shadow-md` })}
+                                        </div>
                                     </div>
-                                </div>
 
-                                { }
-                                <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{cards[activeIndex].title}</h3>
-                                <h4 className={`text-base md:text-lg font-medium ${cards[activeIndex].iconColor} mb-4`}>{cards[activeIndex].subtitle}</h4>
-                                <p className="text-slate-300 leading-relaxed text-base md:text-lg max-w-lg">
-                                    {cards[activeIndex].description}
-                                </p>
+                                    { }
+                                    <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{cards[activeIndex].title}</h3>
+                                    <h4 className={`text-base md:text-lg font-medium ${cards[activeIndex].iconColor} mb-4`}>{cards[activeIndex].subtitle}</h4>
+                                    <p className="text-slate-300 leading-relaxed text-base md:text-lg max-w-lg">
+                                        {cards[activeIndex].description}
+                                    </p>
 
-                                { }
-                                <div className="mt-8 flex items-center justify-center gap-2 z-40">
-                                    {cards.map((_, idx) => (
-                                        <div
-                                            key={idx}
-                                            onClick={(e) => { e.stopPropagation(); setActiveIndex(idx); }}
-                                            className={`rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex
-                                                ? `h-3 w-12 ${cards[activeIndex].glow.replace('bg-', 'bg-')}`
-                                                : 'h-3 w-3 bg-white/20 hover:bg-white/40'
-                                                }`}
-                                        />
-                                    ))}
-                                </div>
+                                    { }
+                                    <div className="mt-8 flex items-center justify-center gap-2 z-40">
+                                        {cards.map((_, idx) => (
+                                            <div
+                                                key={idx}
+                                                onClick={(e) => { e.stopPropagation(); setActiveIndex(idx); }}
+                                                className={`rounded-full transition-all duration-300 cursor-pointer ${idx === activeIndex
+                                                    ? `h-3 w-12 ${cards[activeIndex].glow.replace('bg-', 'bg-')}`
+                                                    : 'h-3 w-3 bg-white/20 hover:bg-white/40'
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                </Tilt>
                             </motion.div>
                         </AnimatePresence>
                     </div>

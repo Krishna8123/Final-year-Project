@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import LaptopTradingView from './LaptopTradingView';
 import InvestorPortfolioView from './InvestorPortfolioView';
+import { Tilt } from 'react-tilt';
 
 function cn(...inputs) {
     return twMerge(clsx(inputs));
@@ -159,7 +160,7 @@ const DualModeSection = () => {
             <div className="container mx-auto px-6 lg:px-12 py-12 relative z-10">
 
                 { }
-                <div className="flex justify-center mb-8">
+                <div className="flex justify-center mb-16">
                     <div className="p-1 rounded-full flex gap-2 items-center relative backdrop-blur-md border transition-all duration-300"
                         style={{
                             backgroundColor: `${currentTheme.surface}80`,
@@ -189,7 +190,7 @@ const DualModeSection = () => {
                 </div>
 
                 { }
-                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 min-h-[400px]">
+                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 min-h-[600px]">
 
                     { }
                     <motion.div
@@ -225,7 +226,7 @@ const DualModeSection = () => {
                         </motion.p>
 
                         {mode === 'TRADER' ? (
-                            <div className="flex flex-col gap-8 relative pl-6">
+                            <div className="flex flex-col gap-16 relative pl-6">
                                 { }
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#1E5EFF] via-[#38BDF8] to-transparent opacity-50" />
 
@@ -254,7 +255,7 @@ const DualModeSection = () => {
                                 ))}
                             </div>
                         ) : (
-                            <div className="flex flex-col gap-8 relative pl-6">
+                            <div className="flex flex-col gap-16 relative pl-6">
                                 { }
                                 <div className="absolute left-[47.5px] top-2 bottom-16 w-[1px] bg-gradient-to-b from-[#2BBFA3] via-[#2BBFA3] to-transparent opacity-50" />
 
@@ -286,6 +287,7 @@ const DualModeSection = () => {
                     </motion.div>
 
                     { }
+                    {/* Right Side: Visual Demo */}
                     <motion.div
                         initial={false}
                         animate={{
@@ -297,7 +299,16 @@ const DualModeSection = () => {
                         className="w-full lg:w-1/2 relative perspective-1000"
                     >
                         <div className="w-full aspect-square lg:aspect-auto flex items-center justify-center">
-                            <CurrentVisual />
+                            <Tilt options={{
+                                max: 15,
+                                scale: 1.02,
+                                speed: 1000,
+                                perspective: 1000,
+                                glare: true,
+                                "max-glare": 0.5
+                            }} className="w-full">
+                                <CurrentVisual />
+                            </Tilt>
                         </div>
                     </motion.div>
 
