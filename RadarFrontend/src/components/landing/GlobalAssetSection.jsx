@@ -10,19 +10,19 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
     return (
         <div className="relative w-[340px] h-[340px] lg:w-[480px] lg:h-[480px] flex items-center justify-center">
 
-            {}
+            { }
             <div className="absolute inset-0 bg-cyan-500/20 blur-[100px] rounded-full" />
 
-            {}
+            { }
             <div className="absolute inset-0 border border-[#6FFFE9]/20 rounded-full bg-cyan-950/30 backdrop-blur-sm z-0 overflow-hidden">
-                {}
+                { }
                 <div className="absolute inset-0 opacity-20"
                     style={{
                         backgroundImage: 'linear-gradient(#6FFFE9 1px, transparent 1px), linear-gradient(90deg, #6FFFE9 1px, transparent 1px)',
                         backgroundSize: '40px 40px'
                     }}
                 />
-                {}
+                { }
                 <motion.div
                     className="absolute inset-0 origin-bottom-right bg-gradient-to-tl from-transparent via-[#6FFFE9]/10 to-transparent"
                     animate={{ rotate: 360 }}
@@ -30,7 +30,7 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                 />
             </div>
 
-            {}
+            { }
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 400 400">
                 <defs>
                     <mask id="cutout">
@@ -39,7 +39,7 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                     </mask>
                 </defs>
 
-                {}
+                { }
                 <path d="M 40 40 L 80 40 L 80 50" fill="none" stroke="#6FFFE9" strokeWidth="2" strokeOpacity="0.5" />
                 <path d="M 40 40 L 40 80 L 50 80" fill="none" stroke="#6FFFE9" strokeWidth="2" strokeOpacity="0.5" />
                 <path d="M 360 40 L 320 40 L 320 50" fill="none" stroke="#6FFFE9" strokeWidth="2" strokeOpacity="0.5" />
@@ -49,7 +49,7 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                 <path d="M 360 360 L 320 360 L 320 350" fill="none" stroke="#6FFFE9" strokeWidth="2" strokeOpacity="0.5" />
                 <path d="M 360 360 L 360 320 L 350 320" fill="none" stroke="#6FFFE9" strokeWidth="2" strokeOpacity="0.5" />
 
-                {}
+                { }
                 <motion.g animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} style={{ originX: "200px", originY: "200px" }}>
                     <circle cx="200" cy="200" r="190" stroke="#6FFFE9" strokeWidth="1" strokeOpacity="0.1" strokeDasharray="10 10" fill="none" />
                     <path d="M 200 10 L 200 30" stroke="#6FFFE9" strokeWidth="2" />
@@ -64,7 +64,7 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                 </motion.g>
             </svg>
 
-            {}
+            { }
             <div className="absolute top-4 left-4 z-20 font-mono text-[10px] text-[#6FFFE9]/70 flex flex-col gap-1">
                 <div className="flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full bg-[#6FFFE9] animate-pulse" />
@@ -91,7 +91,7 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                 <div>ENC: AES-256</div>
             </div>
 
-            {}
+            { }
             <div
                 onClick={() => window.location.href = '/'}
                 className="relative z-30 w-32 h-32 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(16,112,107,0.6)] overflow-hidden border-4 border-[#6FFFE9]/20 bg-black cursor-pointer hover:scale-105 transition-transform duration-300 group"
@@ -103,15 +103,15 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
-                {}
+                { }
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
                 <div className="absolute inset-0 border-[1px] border-[#6FFFE9]/30 rounded-full scale-90"></div>
             </div>
 
-            {}
+            { }
             <div className="absolute inset-0 bg-[#6FFFE9]/5 blur-3xl rounded-full pointer-events-none" />
 
-            {}
+            { }
             {orbits.map((orbit, idx) => (
                 <motion.div
                     key={idx}
@@ -123,7 +123,7 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                     animate={{ rotate: 360 }}
                     transition={{ duration: orbit.speed, repeat: Infinity, ease: "linear" }}
                 >
-                    {}
+                    { }
                     <div
                         onClick={(e) => {
                             e.stopPropagation();
@@ -134,13 +134,13 @@ const VisualComponent = ({ activeAsset, setActiveAsset, orbits }) => {
                     >
                         {orbit.icon}
 
-                        {}
+                        { }
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{
                                 opacity: activeAsset === orbit.label ? 1 : 0,
                                 scale: activeAsset === orbit.label ? 1 : 0.8,
-                                rotate: -360 
+                                rotate: -360
                             }}
                             transition={{ duration: 0.2 }}
                             className={`absolute bottom-full mb-2 bg-slate-900 border border-slate-700 px-3 py-2 rounded-lg text-xs whitespace-nowrap z-50 pointer-events-none ${activeAsset === orbit.label ? 'block' : 'hidden'}`}
@@ -195,16 +195,16 @@ const GlobalAssetSection = () => {
     React.useEffect(() => {
         const fetchData = async () => {
             try {
-                
+
                 const btcRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
                 const btcData = await btcRes.json();
                 const btcPrice = parseFloat(btcData.lastPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 });
                 const btcChange = parseFloat(btcData.priceChangePercent).toFixed(2) + '%';
 
-                
-                const forexRes = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,GBP'); 
-                
-                
+
+                const forexRes = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,GBP');
+
+
                 const eurRes = await fetch('https://api.frankfurter.app/latest?from=EUR&to=USD');
                 const eurData = await eurRes.json();
                 const eurPrice = eurData.rates.USD.toFixed(4);
@@ -213,7 +213,7 @@ const GlobalAssetSection = () => {
                 const gbpData = await gbpRes.json();
                 const gbpPrice = gbpData.rates.USD.toFixed(4);
 
-                
+
                 const randTrend = () => {
                     const val = (Math.random() * 1 - 0.5).toFixed(2);
                     return (val > 0 ? '+' : '') + val + '%';
@@ -221,16 +221,16 @@ const GlobalAssetSection = () => {
 
                 setOrbits(prev => [
                     { ...prev[0], value: btcPrice, trend: (btcData.priceChangePercent > 0 ? '+' : '') + btcChange },
-                    { ...prev[1], value: "103.45", trend: "-0.1%" }, 
-                    { ...prev[2], value: eurPrice, trend: "+0.15%" }, 
+                    { ...prev[1], value: "103.45", trend: "-0.1%" },
+                    { ...prev[2], value: eurPrice, trend: "+0.15%" },
                     { ...prev[3], value: gbpPrice, trend: "+0.08%" },
                 ]);
 
             } catch (err) {
                 console.error("Failed to fetch market data", err);
-                
+
                 setOrbits(prev => [
-                    { ...prev[0], value: "$83,915", trend: "+0.99%" }, 
+                    { ...prev[0], value: "$83,915", trend: "+0.99%" },
                     { ...prev[1], value: "103.45", trend: "-0.1%" },
                     { ...prev[2], value: "1.0842", trend: "+0.2%" },
                     { ...prev[3], value: "1.2750", trend: "+0.1%" },
@@ -239,7 +239,7 @@ const GlobalAssetSection = () => {
         };
 
         fetchData();
-        const interval = setInterval(fetchData, 30000); 
+        const interval = setInterval(fetchData, 30000);
         return () => clearInterval(interval);
     }, []);
 
@@ -248,6 +248,7 @@ const GlobalAssetSection = () => {
             id="global-assets"
             title="What Makes Radar Different"
             description="Radar isn’t just another platform showing raw market data. It’s built to continuously observe, filter, and adapt — so you focus on decisions, not distractions."
+            titleClassName="!animate-none"
             features={features}
             imageComp={<VisualComponent activeAsset={activeAsset} setActiveAsset={setActiveAsset} orbits={orbits} />}
             reverse={true}

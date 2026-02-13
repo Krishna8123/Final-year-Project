@@ -10,23 +10,26 @@ function cn(...inputs) {
 const SplitScreenSection = ({
     title,
     description,
-    features = [], 
+    features = [],
     imageComp,
     reverse = false,
     id,
     gridLayout = false,
     workflowLayout = false,
-    className
+    className,
+    titleClassName,
+    descriptionClassName,
+    featureTitleClassName
 }) => {
     return (
-        <section id={id} className={cn("py-24 relative overflow-hidden", className)}>
+        <section id={id} className={cn("min-h-screen flex flex-col justify-center py-24 relative overflow-hidden", className)}>
             <div className="container mx-auto px-6 lg:px-12 relative z-10">
                 <div className={cn(
                     "flex flex-col lg:flex-row items-center gap-16 lg:gap-24",
                     reverse ? "lg:flex-row-reverse" : ""
                 )}>
 
-                    {}
+                    { }
                     <motion.div
                         initial={{ opacity: 0, x: reverse ? 50 : -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -34,10 +37,10 @@ const SplitScreenSection = ({
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="flex-1 space-y-8"
                     >
-                        <h2 className="text-4xl lg:text-5xl font-bold tracking-tight text-[#348E87] leading-[1.1]">
+                        <h2 className={cn("text-4xl lg:text-5xl font-bold tracking-tight text-gradient-oklab leading-[1.1] pb-1", titleClassName)}>
                             {title}
                         </h2>
-                        <p className="text-lg text-[#1F3F2E]/80 font-medium leading-relaxed">
+                        <p className={cn("text-lg text-gray-200 font-medium leading-relaxed", descriptionClassName)}>
                             {description}
                         </p>
 
@@ -74,7 +77,7 @@ const SplitScreenSection = ({
                                                     )
                                                 )}
                                             </div>
-                                            <h3 className="text-xl font-semibold text-[#348E87] mb-0">
+                                            <h3 className={cn("text-xl font-semibold text-white mb-0", featureTitleClassName)}>
                                                 {feature.title}
                                             </h3>
                                         </>
@@ -90,7 +93,7 @@ const SplitScreenSection = ({
                                                 <h3 className="text-2xl font-bold text-[#E2E8F0] mb-2 group-hover:text-[#6FFFE9] transition-colors duration-300">
                                                     {feature.title}
                                                 </h3>
-                                                <p className="text-lg text-gray-400 leading-relaxed font-light">
+                                                <p className="text-lg text-gray-300 leading-relaxed font-light">
                                                     {feature.text}
                                                 </p>
                                             </div>
@@ -107,11 +110,11 @@ const SplitScreenSection = ({
                                                         )
                                                     )}
                                                 </div>
-                                                <h3 className="text-xl font-semibold text-[#348E87] inline-block">
+                                                <h3 className="text-xl font-semibold text-white inline-block">
                                                     {feature.title}
                                                 </h3>
                                             </div>
-                                            <p className="text-sm text-gray-400 pl-5">
+                                            <p className="text-sm text-gray-300 pl-5">
                                                 {feature.text}
                                             </p>
                                         </>
@@ -121,7 +124,7 @@ const SplitScreenSection = ({
                         </div>
                     </motion.div>
 
-                    {}
+                    { }
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95, x: reverse ? -50 : 50 }}
                         whileInView={{ opacity: 1, scale: 1, x: 0 }}

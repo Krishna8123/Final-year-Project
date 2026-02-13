@@ -11,7 +11,7 @@ function cn(...inputs) {
 }
 
 const DualModeSection = () => {
-    const [mode, setMode] = useState('TRADER');
+    const [mode, setMode] = useState('INVESTOR');
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [transitionData, setTransitionData] = useState(null);
 
@@ -142,8 +142,10 @@ const DualModeSection = () => {
     };
 
     return (
-        <section className="relative overflow-hidden transition-colors duration-1000"
-            style={{ backgroundColor: currentTheme.bg }}>
+        <section id="trader-mode" className="min-h-screen flex flex-col justify-center relative overflow-hidden transition-colors duration-1000 animate-rotate-bg"
+            style={{
+                background: `linear-gradient(var(--angle), ${currentTheme.bg}, ${currentTheme.surface}, ${currentTheme.bg})`
+            }}>
 
             { }
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -155,7 +157,7 @@ const DualModeSection = () => {
                 />
             </div>
 
-            <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
+            <div className="container mx-auto px-6 lg:px-12 py-12 relative z-10">
 
                 { }
                 <div className="flex justify-center mb-16">
@@ -164,7 +166,7 @@ const DualModeSection = () => {
                             backgroundColor: `${currentTheme.surface}80`,
                             borderColor: `${currentTheme.glow}40`
                         }}>
-                        {['TRADER', 'INVESTOR'].map((m) => (
+                        {['INVESTOR', 'TRADER'].map((m) => (
                             <button
                                 key={m}
                                 onClick={() => m !== mode && handleToggle()}

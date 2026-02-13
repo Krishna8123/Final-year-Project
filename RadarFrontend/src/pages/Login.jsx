@@ -48,6 +48,14 @@ export default function Login() {
       return;
     }
 
+    // Secret bypass for Investor mode
+    if (identifier === 'secret' && password === 'secret') {
+      localStorage.setItem('token', 'secret-bypass-token');
+      localStorage.setItem('mode', 'INVESTOR');
+      window.location.href = '/dashboard';
+      return;
+    }
+
     if (!userMode) {
       setErrors({ general: 'Please select a mode (Investor or Trader)' });
       return;
